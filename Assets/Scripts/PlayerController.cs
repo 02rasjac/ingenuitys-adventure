@@ -13,10 +13,12 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed = 45f;
 
     Rigidbody rb;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour
     void Boost() {
         if (Input.GetKey(KeyCode.Space)) {
             rb.AddRelativeForce(Vector3.up * boostSpeed * Time.deltaTime);
+            if (!audioSource.isPlaying) {
+                audioSource.Play();
+            }
+        } else {
+            audioSource.Stop();
         }
     }
 
