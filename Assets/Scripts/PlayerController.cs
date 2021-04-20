@@ -33,16 +33,13 @@ public class PlayerController : MonoBehaviour
 
     /// <summary>method <c>Rotate</c>Rotate the player left/right</summary>
     void Rotate() {
-        // Stop physicsengine on rotation for manual rotation
-        rb.freezeRotation = true;
-
         if (Input.GetKey(KeyCode.RightArrow)) {
-            transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            // transform.Rotate(-Vector3.forward * rotationSpeed * Time.deltaTime);
+            rb.AddTorque(-Vector3.forward * rotationSpeed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.LeftArrow)) {
-            transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            // transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
+            rb.AddTorque(Vector3.forward * rotationSpeed * Time.deltaTime);
         }
-
-        rb.freezeRotation = false;
     }
 }
