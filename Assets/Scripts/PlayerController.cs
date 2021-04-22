@@ -49,4 +49,18 @@ public class PlayerController : MonoBehaviour
             rb.AddTorque(Vector3.forward * rotationSpeed * Time.deltaTime);
         }
     }
+
+    void OnCollisionEnter(Collision other) {
+        switch (other.gameObject.tag) {
+            case "Respawn":
+                Debug.Log("You bumped into a launchpad");
+                break;
+            case "Finish":
+                Debug.Log("You touched the landing pad");
+                break;
+            default:
+                Debug.Log("YOU BLEW UP!");
+                break;
+        }
+    }
 }
