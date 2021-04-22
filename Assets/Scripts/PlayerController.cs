@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void Update() {
+        // Restart with "R"
+        if (Input.GetKeyDown(KeyCode.R)) {
+            RestartLevel();
+        }
+
         DebugInput();
     }
 
