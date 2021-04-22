@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     AudioSource audioSource;
 
-    bool disableMovement = false;
+    bool isTransitioning = false;
 
     // Start is called before the first frame update
     void Start() {
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (!disableMovement) {
+        if (!isTransitioning) {
             Boost();
             Rotate();
         }
@@ -58,21 +58,22 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-        switch (other.gameObject.tag) {
-            case "Friendly":
-                Debug.Log("You bumped into a launchpad");
-                break;
-            case "Finish":
-                Finish();
-                break;
-            default:
-                Crash();
-                break;
+        if (!isTransitioning) {
+            switch (other.gameObject.tag) {
+                case "Friendly":
+                    break;
+                case "Finish":
+                    Finish();
+                    break;
+                default:
+                    Crash();
+                    break;
+            }
         }
     }
 
     void Finish() {
-        disableMovement = true;
+        isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(audioFinish);
         Invoke("NextLevel", delayRespawn);
@@ -91,7 +92,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void Crash() {
-        disableMovement = true;
+        isTransitioning = true;
         rb.constraints = RigidbodyConstraints.None;
         audioSource.Stop();
         audioSource.PlayOneShot(audioCrash, 0.5f);
