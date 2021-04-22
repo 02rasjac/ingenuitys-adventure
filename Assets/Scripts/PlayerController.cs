@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     AudioSource audioSource;
 
+    [HideInInspector]
+    public bool isBoosting = false;
     bool isTransitioning = false;
 
     // Start is called before the first frame update
@@ -36,11 +38,14 @@ public class PlayerController : MonoBehaviour
     /// <summary>method <c>Boos</c>Move player in direction of rotation</summary>
     void Boost() {
         if (Input.GetKey(KeyCode.Space)) {
+            isBoosting = true;
             rb.AddRelativeForce(Vector3.up * boostSpeed * Time.deltaTime);
+
             if (!audioSource.isPlaying) {
                 audioSource.PlayOneShot(audioBoost);
             }
         } else {
+            isBoosting = false;
             audioSource.Stop();
         }
     }
