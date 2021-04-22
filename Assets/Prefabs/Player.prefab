@@ -130,6 +130,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boostSpeed: 1000
   rotationSpeed: 250
+  delayRespawn: 3
+  audioBoost: {fileID: 8300000, guid: 3592f9c11b7235448b94787ab067e858, type: 3}
+  audioCrash: {fileID: 8300000, guid: 1ec266acf2846414e9b42738eb1b3641, type: 3}
+  audioFinish: {fileID: 8300000, guid: b458fe438d0a3fb41941222e28f680de, type: 3}
 --- !u!82 &466799239
 AudioSource:
   m_ObjectHideFlags: 0

@@ -10,31 +10,35 @@ public class PlayerController : MonoBehaviour
     [Tooltip("Delay in seconds")]
     public float delayRespawn = 1f;
 
-    bool isDead = false;
+    public AudioClip audioBoost;
+    public AudioClip audioCrash;
+    public AudioClip audioFinish;
 
     Rigidbody rb;
     AudioSource audioSource;
+
+    bool disableMovement = false;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = audioBoost;
     }
 
     void FixedUpdate() {
-        Boost();
-        
-        if (!isDead) {
+        if (!disableMovement) {
+            Boost();
             Rotate();
         }
     }
 
     /// <summary>method <c>Boos</c>Move player in direction of rotation</summary>
     void Boost() {
-        if (Input.GetKey(KeyCode.Space) && !isDead) {
+        if (Input.GetKey(KeyCode.Space)) {
             rb.AddRelativeForce(Vector3.up * boostSpeed * Time.deltaTime);
             if (!audioSource.isPlaying) {
-                audioSource.Play();
+                audioSource.PlayOneShot(audioBoost);
             }
         } else {
             audioSource.Stop();
@@ -59,12 +63,19 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("You bumped into a launchpad");
                 break;
             case "Finish":
-                Invoke("NextLevel", delayRespawn);
+                Finish();
                 break;
             default:
                 Crash();
                 break;
         }
+    }
+
+    void Finish() {
+        disableMovement = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioFinish);
+        Invoke("NextLevel", delayRespawn);
     }
 
     void NextLevel() {
@@ -80,8 +91,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void Crash() {
-        isDead = true;
+        disableMovement = true;
         rb.constraints = RigidbodyConstraints.None;
+        audioSource.Stop();
+        audioSource.PlayOneShot(audioCrash, 0.5f);
+
         Invoke("RestartLevel", delayRespawn);
     }
 
