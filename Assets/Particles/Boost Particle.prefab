@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1798455608511289429}
   - component: {fileID: 2031904068445503280}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Boost Particle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
