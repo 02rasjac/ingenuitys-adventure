@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
-    /// <summary>var <c>boostSpeed</c> indicates the ammount of force to be applied in local y-axis. 
-    /// Default <value>1000</value></summary>
     public int boostSpeed = 1000;
-
-    /// <summary>var <c>rotationSpeed</c> indicates the speed of rotation. 
-    /// Default <value>45f</value></summary>
     public float rotationSpeed = 45f;
+    [Tooltip("Delay in seconds")]
+    public float delayRespawn = 1f;
+
+    bool isDead = false;
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -24,12 +23,15 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate() {
         Boost();
-        Rotate();
+        
+        if (!isDead) {
+            Rotate();
+        }
     }
 
     /// <summary>method <c>Boos</c>Move player in direction of rotation</summary>
     void Boost() {
-        if (Input.GetKey(KeyCode.Space)) {
+        if (Input.GetKey(KeyCode.Space) && !isDead) {
             rb.AddRelativeForce(Vector3.up * boostSpeed * Time.deltaTime);
             if (!audioSource.isPlaying) {
                 audioSource.Play();
@@ -57,10 +59,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("You bumped into a launchpad");
                 break;
             case "Finish":
-                NextLevel();
+                Invoke("NextLevel", delayRespawn);
                 break;
             default:
-                RestartLevel();
+                Crash();
                 break;
         }
     }
@@ -75,6 +77,12 @@ public class PlayerController : MonoBehaviour
         }
 
         SceneManager.LoadScene(nextLevelIndex);
+    }
+
+    void Crash() {
+        isDead = true;
+        rb.constraints = RigidbodyConstraints.None;
+        Invoke("RestartLevel", delayRespawn);
     }
 
     void RestartLevel() {
