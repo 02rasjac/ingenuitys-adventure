@@ -66,6 +66,7 @@ Transform:
   - {fileID: 4168027811648865183}
   - {fileID: 528801004497800182}
   - {fileID: 5699382671277138760}
+  - {fileID: 8188058752273075741}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -118,6 +119,7 @@ MonoBehaviour:
   audioFinish: {fileID: 8300000, guid: b458fe438d0a3fb41941222e28f680de, type: 3}
   particleCrash: {fileID: 5609144461350118034}
   particleSuccess: {fileID: 403513896880985120}
+  particleBoost: {fileID: 882556132827491141}
   isBoosting: 0
 --- !u!82 &735528076441244005
 AudioSource:
@@ -281,6 +283,77 @@ Transform:
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 198631066050499358, guid: 62198a3a5dbb64a4f9e1618929224faa, type: 3}
   m_PrefabInstance: {fileID: 529239092820068158}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1498042779695690512
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2403737049657704161}
+    m_Modifications:
+    - target: {fileID: 1798455608511289429, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8324156416694608818, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+      propertyPath: m_Name
+      value: Boost Particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+--- !u!4 &8188058752273075741 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7308156874700520717, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+  m_PrefabInstance: {fileID: 1498042779695690512}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &882556132827491141 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1798455608511289429, guid: 6f0755506af2edd4194f2638c221bb10, type: 3}
+  m_PrefabInstance: {fileID: 1498042779695690512}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4493878069189862516
 PrefabInstance:

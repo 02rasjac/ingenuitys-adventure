@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip audioFinish;
     public ParticleSystem particleCrash;
     public ParticleSystem particleSuccess;
+    public ParticleSystem particleBoost;
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -40,15 +41,18 @@ public class PlayerController : MonoBehaviour
     /// <summary>method <c>Boos</c>Move player in direction of rotation</summary>
     void Boost() {
         if (Input.GetKey(KeyCode.Space)) {
-            isBoosting = true;
             rb.AddRelativeForce(Vector3.up * boostSpeed * Time.deltaTime);
 
-            if (!audioSource.isPlaying) {
+            if (!isBoosting) {
                 audioSource.PlayOneShot(audioBoost);
+                particleBoost.Play();
             }
+
+            isBoosting = true;
         } else {
-            isBoosting = false;
             audioSource.Stop();
+            particleBoost.Stop();
+            isBoosting = false;
         }
     }
 
@@ -84,7 +88,7 @@ public class PlayerController : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(audioFinish);
         particleSuccess.Play();
-        
+
         Invoke("NextLevel", delayRespawn);
     }
 
