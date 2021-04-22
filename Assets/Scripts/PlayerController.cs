@@ -23,12 +23,17 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public bool isBoosting = false;
     bool isTransitioning = false;
+    bool disableCollision = false;
 
     // Start is called before the first frame update
     void Start() {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
         audioSource.clip = audioBoost;
+    }
+
+    void Update() {
+        DebugInput();
     }
 
     void FixedUpdate() {
@@ -69,7 +74,7 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-        if (!isTransitioning) {
+        if (!isTransitioning && !disableCollision) {
             switch (other.gameObject.tag) {
                 case "Friendly":
                     break;
@@ -118,5 +123,16 @@ public class PlayerController : MonoBehaviour
 
     void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void DebugInput() {
+        if (Input.GetKeyDown(KeyCode.L)) {
+            NextLevel();
+        } 
+        else if (Input.GetKeyDown(KeyCode.C)) {
+            disableCollision = !disableCollision;
+        }
+
+        
     }
 }
