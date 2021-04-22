@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip audioBoost;
     public AudioClip audioCrash;
     public AudioClip audioFinish;
+    public ParticleSystem particleCrash;
+    public ParticleSystem particleSuccess;
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -81,6 +83,8 @@ public class PlayerController : MonoBehaviour
         isTransitioning = true;
         audioSource.Stop();
         audioSource.PlayOneShot(audioFinish);
+        particleSuccess.Play();
+        
         Invoke("NextLevel", delayRespawn);
     }
 
@@ -101,6 +105,7 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.None;
         audioSource.Stop();
         audioSource.PlayOneShot(audioCrash, 0.5f);
+        particleCrash.Play();
 
         Invoke("RestartLevel", delayRespawn);
     }
