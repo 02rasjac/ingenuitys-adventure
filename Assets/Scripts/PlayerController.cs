@@ -53,16 +53,31 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision other) {
         switch (other.gameObject.tag) {
-            case "Respawn":
+            case "Friendly":
                 Debug.Log("You bumped into a launchpad");
                 break;
             case "Finish":
-                Debug.Log("You touched the landing pad");
+                NextLevel();
                 break;
             default:
-                Debug.Log("YOU BLEW UP!");
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+                RestartLevel();
                 break;
         }
+    }
+
+    void NextLevel() {
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextLevelIndex = levelIndex + 1;
+
+        // Restart at first level, if this was the last
+        if (levelIndex == SceneManager.sceneCountInBuildSettings - 1) {
+            nextLevelIndex = 0;
+        }
+
+        SceneManager.LoadScene(nextLevelIndex);
+    }
+
+    void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
