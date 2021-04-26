@@ -16,6 +16,9 @@ public class MovingObject : MonoBehaviour
 
     void Update()
     {
+        // Prevent x / 0 -> error
+        if (period <= Mathf.Epsilon) {return;}
+
         // Calculate the offset to move based on a sin-wave
         float cycles = Time.time / period;
         const float tau = Mathf.PI * 2;
