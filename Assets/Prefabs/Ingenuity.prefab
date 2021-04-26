@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 8831035826098411795}
   - component: {fileID: 8839484760569179340}
   - component: {fileID: 6058387261371104269}
+  - component: {fileID: 1921938747981245687}
   - component: {fileID: 735528076441244005}
   m_Layer: 0
   m_Name: Ingenuity
@@ -217,6 +218,18 @@ MonoBehaviour:
   particleSuccess: {fileID: 403513896880985120}
   particleBoost: {fileID: 882556132827491141}
   isBoosting: 0
+--- !u!114 &1921938747981245687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8236873144056781698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18c577597bfc10741af32ce7a1edb433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &735528076441244005
 AudioSource:
   m_ObjectHideFlags: 0
