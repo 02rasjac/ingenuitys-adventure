@@ -15,6 +15,7 @@ MonoBehaviour:
   reverse: 0
   propellerSpeedIdle: 360
   propellerSpeedBoostingMultiplier: 5
+  propellerSmoothnes: 0.01
   player: {fileID: 8236873144056781698}
 --- !u!114 &203630299
 MonoBehaviour:
@@ -31,6 +32,7 @@ MonoBehaviour:
   reverse: 1
   propellerSpeedIdle: 360
   propellerSpeedBoostingMultiplier: 5
+  propellerSmoothnes: 0.01
   player: {fileID: 8236873144056781698}
 --- !u!1 &5653945115549346737
 GameObject:
